@@ -1,0 +1,8 @@
+## Project definition
+This project is a pratical exercise to study and apply Domain-Driven Design and Clean Architecture principles.
+The system is a simple sales order management.
+
+# Project structure
+
+Domain layer should not depend on any other layers, and shoulb be testable in isolation.
+If domain layer test fail then entire system is broken.

@@ -1,3 +1,15 @@
 <Solution>
-  <Project Path="DDDPratical/DDDPratical.csproj" />
+  <Folder Name="/notes/">
+    <File Path="BuildBlocks.txt" />
+    <File Path="SupportNotes.txt" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="Application/DDDPratical.Application.csproj" />
+    <Project Path="DDDPratical/DDDPratical.csproj" />
+    <Project Path="Domain/DDDPratical.Domain.csproj" />
+    <Project Path="Infrastructure/DDDPratical.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="DDDPratical.Domain.Tests/DDDPratical.Domain.Tests.csproj" />
+  </Folder>
 </Solution>
