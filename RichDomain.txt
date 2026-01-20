@@ -1,0 +1,45 @@
+## Rich Domain vs Anemic Domain
+
+Rich Domain; occurs when our domain models are not only data structures but also encapsulate business logic and behavior related to protect the integrity of the domain.
+
+Anemic Domain; on the other hand, is characterized by domain models that primarily consist of data structures without any behavior or logic, they are nothing more than
+data sacks. In this approach, the business logic is often found in separate service classes, leading to a separation between data and behavior.
+
+
+Anemic Domain Example:
+
+public class Order
+{
+	public int Id { get; set; }
+	public DateTime OrderDate { get; set; }
+	public decimal TotalAmount { get; set; }
+}
+
+Encapsulating principle is broken, because order only store data but not control how your own data is manipulated.
+No/low coehesion, because your behavior is spread across services.
+Harder to maintain, because any change in business logic may require changes in multiple services.
+Pontecial for inconsistent state, because there's no guarantee that the data is always valid.
+
+Note: Anemic Domain is considered an anti-pattern to models that represent domain, but it can be useful in some cases as DTO's or Simples cases like CRUD applications.
+
+Another anemic caracteristic is your obssesion for primitive types , like int, string, decimal, DateTime, etc. to represent important data instead of using Value Objects
+that hold rules, semantics and are meaningful in the domain context.
+
+Value Objects encapsulate primitives types that are related and add meaning, validation and behavior to them.
+So user VO's to replace primitive types when they represent rules or have specific meaning in the domain, they are immutable and encapsulate validation.
+To simple conpects uses Enums and centralize the bahavior in rich domain methods on your entitie.
+
+Minor script to decision:
+1 - Does this data has it own rules, behavior or represent a concept in the domain?
+If yes, it should be a Value Object. like Address Code, Email, Currency Value, Personal Register Number.
+
+2 - Build Value Objects imutables and robust.
+Replace primitive types with imutable classes or user records. (sealed/record)
+Validate invariants in the constructor, so your value object will always born valid protecting the domain integrity.
+
+3 - Use Enums to concepts of fixes state.
+When a conpect has a limited set of possible values, use Enums to represent them. like: OrderStatus (Pending, Shipped, Delivered, Canceled)
+
+4 - Encapsulate the entity behavior.
+Avoid to use public set. Explain methods that express meaning of domain behavior.
+This garantee that all the changes to the entity pass by the rules defined in the domain.

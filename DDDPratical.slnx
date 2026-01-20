@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/notes/">
     <File Path="BuildBlocks.txt" />
+    <File Path="RichDomain.txt" />
     <File Path="SupportNotes.txt" />
   </Folder>
   <Folder Name="/src/">

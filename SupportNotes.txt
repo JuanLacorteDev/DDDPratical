@@ -6,3 +6,14 @@ The system is a simple sales order management.
 
 Domain layer should not depend on any other layers, and shoulb be testable in isolation.
 If domain layer test fail then entire system is broken.
+
+
+
+
+
+## MAYBE A READE ME.md
+
+This project is a practical exercise to study Domain-Driven Design (DDD) to understand its principles and best practices.
+The DDD is concept that help us to create software with to model a expressive code, secure and aligned with business rules and not a way to organize folders and files,
+it help you to create a rich domain model that encapsulate business logic and rules, instead of anemic domain model that only contain data structures without behavior.
+To achieve this we need to express the domain concepts into code as more loyal way as possible.
