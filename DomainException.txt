@@ -1,0 +1,9 @@
+## Domains Excpetions
+
+A Domain Exception is an error that occurs when a business rule or invariant is violated.
+Exceptions like, IOexception, SqlException are not domain exceptions, they are infrastructure exceptions.
+
+To define a Domain Exception, we need to certificated that this handles a business rule violation.
+
+So, when a service application cathches a Domain Exception it all ready knows that something wrong about de bussiness
+has happened, and it can treat it accordingly translating to a unbiguous message.
