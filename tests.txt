@@ -1,0 +1,16 @@
+## Good practices for writing tests DDD 
+
+1 - Validate only the domain. (Total isolation)
+Tests of unit should behold and interact only with classes of your domain (VO's, Entities and Aggragate Roots).
+
+2 - Prior the invariant validation.
+ Exhaustively test the validation of your Value Objects constructors and Aggregate Root methods
+ to ensure that will be throw a domain exception when they receive invalid data.
+
+3 - Name yout tests by intention of business.
+ Use names that express the business rule being tested, like:
+ "Create_Address_Valid()"
+
+4 - Teste the equality of Value Objects.
+Since Value Objects are compared by their values, create tests to ensure that two instances 
+with the same data are considered equal.

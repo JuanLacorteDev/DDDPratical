@@ -8,7 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Commom\**" />
+    <EmbeddedResource Remove="Commom\**" />
+    <None Remove="Commom\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="FluentAssertions" Version="8.8.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
@@ -19,9 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commom\" />
     <Folder Include="Entities\" />
     <Folder Include="ValueObjects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\DDDPratical.Domain.csproj" />
   </ItemGroup>
 
 </Project>
