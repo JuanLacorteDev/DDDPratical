@@ -1,0 +1,40 @@
+## Aggregate Definition
+
+An aggregate is a cluster of domain objects that can be treated as a single unit. "Eric Evans"
+An aggregate will have one of its component objects be the aggregate root. 
+Any references from outside the aggregate should only go to the aggregate root. 
+The aggregate root can then ensure the integrity of the entire aggregate.
+
+An aggregate is a concept of domain that should keep atomicaly consistent, changes within 
+it should be done in a single transaction (all or nothing). 
+
+Aggregate hoot is a main entity inside the aggregate, it is responsible for enforcing the invariants of the aggregate 
+and controlling access to its components, being a single point of entry for operations on the aggregate.
+
+Aggregates help to manage complexity in domain models by encapsulating related entities and value objects.
+
+
+How to identify an Aggregate:
+
+Analise the lifecycle and dependencies od the domain objects.
+
+1 - Which objects share the same lifecycle? - are created, updated , and deleted together.
+	If a object cannot exist without your parent object, they probably is a part of this aggregate.
+
+2 - Which objects are strongly coupled by business rules?
+    An Order does not existe without OrderItems, and update a OrderItem may affect the Order total.
+
+Plus: Avoid to include in aggragate objects that could be independently modified. Sample: Customer and Product.
+
+
+How to indetify the Aggregate Root:
+
+The aggregate root is the entity that represents the aggragante externally.
+
+1 - Only the aggregate root should be accessible from outside the aggregate.
+    It is the only object that can be referenced by objects outside the aggregate.
+
+2 - The aggragate root is the "chief" of the aggregate. it has the responsibility to enforce 
+the invariants and business rules will be not violated.
+
+

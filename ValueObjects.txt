@@ -1,0 +1,66 @@
+## Value Objects and Enums in Domain-Driven Design (DDD)
+
+Value Objects encapsulate primitives types that are related and add meaning, validation and behavior to them.
+So user VO's to replace primitive types when they represent rules or have specific meaning in the domain, they are immutable and encapsulate validation.
+To simple conpects uses Enums and centralize the bahavior in rich domain methods on your entitie.
+
+Minor script to decision:
+1 - Does this data has it own rules, behavior or represent a concept in the domain?
+If yes, it should be a Value Object. like Address Code, Email, Currency Value, Personal Register Number.
+
+2 - Build Value Objects imutables and robust.
+Replace primitive types with imutable classes or user records. (sealed/record)
+Validate invariants in the constructor, so your value object will always born valid protecting the domain integrity.
+
+3 - Use Enums to concepts of fixes state.
+When a conpect has a limited set of possible values, use Enums to represent them. like: OrderStatus (Pending, Shipped, Delivered, Canceled)
+
+4 - Encapsulate the entity behavior.
+Avoid to use public set. Explain methods that express meaning of domain behavior.
+This garantee that all the changes to the entity pass by the rules defined in the domain.
+
+
+Using a value object to replace a primitive type, example DECIMAL for TotalAmount:
+public sealed record Currency
+{
+	public decimal Value { get; }
+	public Currency(decimal value)
+	{
+		if (value < 0)
+		{
+			throw new ArgumentException("The value canot be negative");
+		}
+		Value = value;
+	}
+	public override string ToString() => Amount.ToString("C2");
+}
+
+Using a value object to replace a primitive type, example INT for Quantity:
+public sealed record Quantity
+{
+	public int Value { get; }
+	public Quantity(int value)
+	{
+		if (value <= 0)
+		{
+			throw new ArgumentException("Quantity must be greater than zero");
+		}
+		Value = value;
+	}
+	public override string ToString() => Value.ToString();
+}
+
+
+
+Using Enum to replace string for OrderStatus:
+Enum are type of data that consist of a set of fixed named values, used to represent a concept with limited possible states.
+
+public enum OrderStatus
+{
+	Created = 1,
+	Pending = 2,
+	Paid = 3,
+	Shipped = 4,
+	Delivered = 5,
+	Canceled = 6
+} 
