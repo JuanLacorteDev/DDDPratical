@@ -9,7 +9,7 @@ Tests of unit should behold and interact only with classes of your domain (VO's,
 
 3 - Name yout tests by intention of business.
  Use names that express the business rule being tested, like:
- "Create_Address_Valid()"
+ "Create_Valid_Address()"
 
 4 - Teste the equality of Value Objects.
 Since Value Objects are compared by their values, create tests to ensure that two instances 
