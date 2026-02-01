@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/DDDPratical.Domain.Tests/TestResults/926cd6dd-8bd0-4093-8bcb-b270e71d6c30/coverage.cobertura.xml
