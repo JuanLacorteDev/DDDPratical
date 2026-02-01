@@ -98,7 +98,7 @@ public class OrderItemTest
 
     #endregion
 
-    #region Add and Remove Quantity Tests
+    #region Add Quantity Tests
     [Fact(DisplayName = "Should add quantity with success when given quantity is valid.")]
     public void AddQuantity_ShouldAddQuantity_WhenQuantityIsValid()
     {
@@ -129,6 +129,41 @@ public class OrderItemTest
         //Assert
         act.Should().Throw<DomainException>()
             .WithMessage("Quantity to add must be greater than zero.");
+    }
+    #endregion
+
+    #region Remove Quantity Tests
+
+    [Fact(DisplayName ="Should remove item with sucess when data is valid")]
+    public void RemoveQuantity_ShouldRemoveQuantity_WhenQuantityIsValid()
+    {
+        //Arrange
+        var initialQuantity = 5;
+        var quantityToRemove = 2;
+        var orderItem = CreateOrderItemValid(unitPrice: 100, quantity: initialQuantity);
+        var expectedQuantity = initialQuantity - quantityToRemove;
+        var expectedTotalAmount = orderItem.UnitPrice * expectedQuantity;
+        //Act
+        orderItem.RemoveQuantity(quantityToRemove);
+        //Assert
+        orderItem.Quantity.Should().Be(expectedQuantity);
+        orderItem.TotalAmount.Should().Be(expectedTotalAmount);
+        orderItem.UpdatedAt.Should().NotBeNull();
+    }
+
+    [Theory(DisplayName ="Shoud throw a DomainException when data is not valid")]
+    [InlineData(4, "Quantity to remove cannot exceed current quantity.")]
+    [InlineData(3, "Order item quantity cannot be zero. Consider removing the item from the order.")]
+    [InlineData(0, "Quantity to remove must be greater than zero.")]
+    public void RemoveQuantity_ShouldThrowDomainException_WhenQuantityIsInvalid(int quantityToRemove, string messageExpected)
+    {
+        //Arrange
+        var orderItem = CreateOrderItemValid(unitPrice: 100, quantity: 3);
+        //Act
+        Action act = () => orderItem.RemoveQuantity(quantityToRemove);
+        //Assert
+        act.Should().Throw<DomainException>()
+            .WithMessage(messageExpected);
     }
 
     #endregion
