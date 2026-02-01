@@ -132,7 +132,7 @@ public class DeliveryAddressTest
 
         //Assert
         act.Should().Throw<DomainException>()
-            .Where(e => e.Message.Contains(expectedParamName));
+            .Where(exp => exp.Message.Contains(expectedParamName));
     }
 
     [Theory(DisplayName = "A DeliveryAddress should throw DomainException when postal code is invalid")]
