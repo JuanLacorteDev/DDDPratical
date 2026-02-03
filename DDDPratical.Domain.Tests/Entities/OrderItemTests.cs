@@ -4,7 +4,7 @@ using FluentAssertions;
 
 namespace DDDPratical.Domain.Tests.Entities;
 
-public class OrderItemTest
+public class OrderItemTests
 {
     #region Auxiliary Methods
     private static OrderItem CreateOrderItemValid(decimal unitPrice, int quantity)

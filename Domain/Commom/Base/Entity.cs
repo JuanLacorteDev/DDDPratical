@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDDPratical.Domain.Events.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,9 +9,11 @@ namespace DDDPratical.Domain.Commom.Base
     {
 
         //protected set to allow only derived classes to set the properties
-        public Guid Id { get; protected set; }
-        public DateTime CreatedAt { get; protected set; }
-        public DateTime? UpdatedAt { get; protected set; }
+        public Guid Id { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime? UpdatedAt { get; private set; }
+
+       
 
         //protected constructor to prevent direct instantiation
         protected Entity()
@@ -57,6 +60,28 @@ namespace DDDPratical.Domain.Commom.Base
         {
             return !(left == right);
         }
+
+
+        //Domain Events handling
+
+        private readonly List<IDomainEvent> _domainEvents = new();
+        public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+
+        protected void AddDomainEvent(IDomainEvent domainEvent)
+        {
+            _domainEvents.Add(domainEvent);
+        }
+
+        public void RemoveDomainEvent(IDomainEvent domainEvent)
+        {
+            _domainEvents.Remove(domainEvent);
+        }
+
+        public void ClearDomainEvents()
+        {
+            _domainEvents.Clear();
+        }
+
 
     }
 }

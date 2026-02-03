@@ -1,0 +1,34 @@
+## Domain Events
+
+A Domain Event is a significant occurrence or change in state 
+within a domain that is of interest to the business or system. 
+Domain Events are used to capture and communicate these occurrences between different parts of the system, 
+often to trigger side effects or notify other components.
+
+At DDD, events are awalays named in the past tense to reflect that they represent something that has already happened.
+Sample: "ApprovedPaymentEvent", "CancelledOrderEvent", "RegisteredUserEvent".
+
+The role of Domain Event is to notify rest of the system about something important happened without concerning
+about who is interested in that event or what actions should be taken as a result.
+
+### Characteristics of Domain Events
+
+1. **Immutability**: Once created, a Domain Event should not be modified. It represents a fact that has occurred.
+2. **Descriptive Naming**: The name of the event should clearly describe what has happened.
+3. **Payload**: Domain Events often carry data (payload) that provides context about the event, such as identifiers or relevant attributes.
+
+Not all events have same importance, so whe have diferent types of Domain Events:
+
+Internal Events:
+- They are published and consumed whithin the same bounded context.
+- They are used to prapagate local changes inside a bounded context.
+- Example: "OrderShippedEvent" within an Order Management context.
+
+
+Bussiness Events:
+- They go through different bounded contexts.
+- They comunicate significant facts across the system.
+- Example: "ApprovedPaymentEvent" that notifies both Billing and Order contexts.
+
+Bussiness events are those that "change the state of the business" and need to be published to other bounded contexts.
+commomly via message, integration events, etc.

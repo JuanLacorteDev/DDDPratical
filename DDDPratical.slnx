@@ -2,6 +2,7 @@
   <Folder Name="/notes/">
     <File Path="Aggregate.txt" />
     <File Path="BuildBlocks.txt" />
+    <File Path="DomainEvents.txt" />
     <File Path="DomainException.txt" />
     <File Path="RichDomain.txt" />
     <File Path="SupportNotes.txt" />
