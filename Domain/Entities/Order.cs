@@ -136,7 +136,6 @@ public sealed class Order : AggregateRoot
         SetUpdatedAt();
     }
 
-
     public void HandlePaymentFailure(Guid paymentId)
     {
         var payment = _payments.FirstOrDefault(p => p.Id == paymentId);
@@ -204,7 +203,6 @@ public sealed class Order : AggregateRoot
         SetUpdatedAt();
         AddDomainEvent(new OrderCancelledEvent(Id, ClientId, Status, reason ?? ReasonCancellation.Other, _payments.LastOrDefault()?.Id));
     }
-
 
     private void RecalculateTotalAmount()
     {
